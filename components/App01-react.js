@@ -4,7 +4,7 @@ import {
   SafeAreaView,
   StyleSheet,
   ScrollView,
-  View,//相当于div
+  View,
   Text,
   StatusBar,
 } from 'react-native';

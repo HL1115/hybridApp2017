@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react';
 import {
 	SafeAreaView,
 	StyleSheet,
-	View,//相当于div
+	View,
 	Text,
 	Image,
 	TextInput,
@@ -63,19 +63,9 @@ const App = () => {
 			<StatusBar barStyle="dark-content" />
 			<SafeAreaView>
 				<ScrollView>
-					{/* <View style={{
-						width:34,
-						height:34,
-						borderRadius:17,
-						overflow:'hidden'
-					}}>
-						<Button
-							onPress={()=>{}}
-							title="+"
-						/>
-					</View>
-					
-					<TouchableOpacity
+					 
+					{/* TouchableOpacity(按下时不透明度降低) */}
+					{/*<TouchableOpacity
 						style={{
 							width:40,
 							height:40,
@@ -120,16 +110,14 @@ const App = () => {
 							</Text>
 						</TouchableOpacity>
 					</View>  */}
-					
-
-
-
-
+				
 
 				{/* flex 布局 */}
+
 				{/* 在 rn 中，组件 默认设置了 flex 属性，默认主轴是 竖轴 */}
 				{/* justifyContent:定义主轴对齐方式 */}
 				{/* alignItems:定义交叉轴对齐方式 */}
+
 				{/* <View style={{
 					flexDirection:'row',
 					justifyContent:"space-evenly",
@@ -156,8 +144,10 @@ const App = () => {
 				</View> */}
 
 
-				{/* 受控组件 */}
-				{/* <Text>{val}</Text>
+				{/* TextInput 受控组件 */}
+
+				{/* 
+				<Text>{val}</Text>
 				<TextInput 
 					placeholder="请输入内容"
 					onChangeText={(val)=>{setVal(val)}}
@@ -191,7 +181,8 @@ const App = () => {
 
   
 				{/* FlatList */}
-				<FlatList 
+				
+				{/* <FlatList 
 					data={da}
 					onRefresh={upDateData}
 					refreshing={isFresh}
@@ -199,7 +190,7 @@ const App = () => {
 					renderItem={({item,index})=>(
 						<View><Text>{item.title}</Text></View>
 					)}
-				/>
+				/> */}
 			</SafeAreaView>
 		</>
 	);

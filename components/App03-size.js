@@ -3,7 +3,7 @@ import React,{useState,useEffect} from 'react';
 import {
 	SafeAreaView,
 	StyleSheet,
-	View,//相当于div
+	View,
 	Text,
 	Image,
 	TextInput,

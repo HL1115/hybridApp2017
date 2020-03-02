@@ -24,6 +24,10 @@ export default class Msg extends Component {
                     title='消息数加1' 
                     onPress={()=>this.setState({count:1})}
                 />
+                <Button 
+                    title='打开lightbox' 
+                    onPress={()=>Actions.light()}
+                />
             </View>
         )
     }

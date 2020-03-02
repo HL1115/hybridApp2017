@@ -36,6 +36,10 @@ export default class Msg extends Component {
                     title='Login1' 
                     onPress={()=>Actions.login1()}
                 />
+                <Button 
+                    title='跳到文档页' 
+                    onPress={()=>Actions.doc()}
+                />
             </View>
         )
     }

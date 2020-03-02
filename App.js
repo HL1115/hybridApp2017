@@ -44,6 +44,7 @@ const App = () => {
 											name="home"
 										/>
 									}
+									
 								>
 
 									<Scene key="ms" component={Msg}/>

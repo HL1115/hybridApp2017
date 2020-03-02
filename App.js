@@ -5,6 +5,7 @@ import Doc from './components/Doc';
 import Msg from './components/Msg';
 import MsgDetail from './components/MsgDetail';
 import { Grid, Icon } from '@ant-design/react-native';
+import Mybox from './components/Mybox';
 
 // 添加4.0.6版本的 react-native-router-flux
 // yarn remove react-native-router-flux
@@ -65,7 +66,7 @@ const App = () => {
 						</Tabs>
 					</Scene>
 				</Drawer>
-				<Scene key='light' component={()=><Text>lightbox</Text>}/>
+				<Scene key='light' component={Mybox}/>
 			</Lightbox>
 		</Router>
 	);

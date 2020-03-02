@@ -28,6 +28,14 @@ export default class Msg extends Component {
                     title='打开lightbox' 
                     onPress={()=>Actions.light()}
                 />
+                <Button 
+                    title='登录' 
+                    onPress={()=>Actions.login()}
+                />
+                <Button 
+                    title='Login1' 
+                    onPress={()=>Actions.login1()}
+                />
             </View>
         )
     }

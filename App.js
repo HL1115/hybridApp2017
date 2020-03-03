@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import {StyleSheet,View,Text, Image } from 'react-native';
-import {Router, Scene, Tabs, Drawer, Lightbox, Modal} from 'react-native-router-flux';
+import {Router, Overlay, Scene, Tabs, Drawer, Lightbox, Modal} from 'react-native-router-flux';
 import Doc from './components/Doc';
 import Msg from './components/Msg';
 import MsgDetail from './components/MsgDetail';
@@ -9,6 +9,7 @@ import Mybox from './components/Mybox';
 import ShowMyName from './components/ShowMyName';
 import Login from './components/Login';
 import Home from './components/Home';
+import Message from './components/Message';
 
 // 图标安装完后，要link，link成功后卸载App，再重新 npm run android
 // 重装完以后，App停止运行的，卸载除了 react-native-router-flux之外的没用的包
@@ -22,6 +23,7 @@ const App = () => {
 	// 实现 Tabs
 	return (
 		<Router>
+			<Overlay>
 			<Modal key="modal" hideNavBar>
 				<Lightbox key="lightbox">
 					<Drawer 
@@ -91,6 +93,8 @@ const App = () => {
 				<Scene key="login" component={ShowMyName}/>
 				<Scene key="login1" component={Login}/>
 			</Modal>
+			<Scene component={Message}/>
+			</Overlay>
 		</Router>
 	);
 };

@@ -21,7 +21,10 @@ export default class Home extends Component {
             <View>
                 {/* horizontal:实现水平滚动 */}
                 {/* numColumns:实现分栏布局 */}
+
                 <FlatList 
+                    ListHeaderComponent={<Text>头部</Text>}
+                    ListFooterComponent={<Text>尾部</Text>}
                     numColumns={2}
                     data={this.state.data}
                     renderItem={

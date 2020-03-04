@@ -23,7 +23,8 @@
     "react-native-router-flux": "4.0.6",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.1.0",
-    "react-native-swiper": "^1.6.0-nightly.5"
+    "react-native-swiper": "^1.6.0-nightly.5",
+    "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

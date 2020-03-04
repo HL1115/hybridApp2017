@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {View, Text, FlatList, Dimensions ,ScrollView, StyleSheet } from 'react-native';
 import Button from 'react-native-button';
 import { MessageBarManager } from 'react-native-message-bar';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const {width} = Dimensions.get('window')
 
@@ -23,7 +24,7 @@ export default class Home extends Component {
             <View>
                 {/* horizontal:实现水平滚动 */}
                 {/* numColumns:实现分栏布局 */}
-
+                <Icon color="red" name='chevron-left'/>
                 <FlatList 
                     ListHeaderComponent={
                         <Button 

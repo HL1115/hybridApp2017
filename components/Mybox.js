@@ -1,19 +1,41 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { Animated, View, Text, StyleSheet, Button } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 export default class Mybox extends Component {
+    constructor(){
+        super();
+        this.state = {
+            opacity: new Animated.Value(0)
+        }
+    }
+    componentDidMount(){
+        Animated.timing(this.state.opacity,{
+            toValue: 1,
+            duration: 500
+        }).start()
+    }
+    back = ()=>{
+        Animated.timing(this.state.opacity,{
+            toValue: 0,
+            duration: 500
+        }).start(Actions.pop)
+    }
     render() {
         return (
             <View style={styles.container}>
-                <View style={styles.innerBox}> 
+                <Animated.View 
+                    style={
+                        [{opacity:this.state.opacity},styles.innerBox]
+                    }
+                > 
                     <Button 
                         title='返回'
                         onPress={
-                            Actions.pop
+                            this.back
                         }
                     />
-                </View>
+                </Animated.View>
             </View>
         )
     }

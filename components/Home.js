@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {View, ActivityIndicator, Text, FlatList, Dimensions ,ScrollView, StyleSheet } from 'react-native';
+import { Animated, Easing, View, ActivityIndicator, Text, FlatList, Dimensions ,ScrollView, StyleSheet } from 'react-native';
 import Button from 'react-native-button';
 import { MessageBarManager } from 'react-native-message-bar';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -16,8 +16,15 @@ export default class Home extends Component {
             data.push({tit:i,key:i});
         }
         this.state = {
-            data
+            data,
+            width: new Animated.Value(20)
         }
+    }
+    zoom = ()=>{
+        Animated.timing(this.state.width,{
+            toValue: 200,
+            // easing: Easing.elastic() 
+        }).start()
     }
     render() {
         console.log('home')
@@ -33,7 +40,18 @@ export default class Home extends Component {
                         style={styles.btn}
                     >跳转 Mylist</Button>
                 </View>
-                <FlatList 
+                <Button 
+                    onPress={()=>{this.zoom()}}
+                    style={styles.btn}
+                >变大</Button>
+                <Animated.View
+                    style={{
+                        width: this.state.width,
+                        height: 200,
+                        backgroundColor: 'red'
+                    }}
+                ></Animated.View>
+                {/* <FlatList 
                     ListHeaderComponent={
                         <Button 
                             onPress={()=>{
@@ -55,7 +73,7 @@ export default class Home extends Component {
                             <Text>{item.tit}</Text>
                         </View>
                     }
-                />
+                /> */}
                 {/* <ScrollView 
                     pagingEnabled={true} 
                     horizontal={true}

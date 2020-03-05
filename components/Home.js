@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import {View, Text, FlatList, Dimensions ,ScrollView, StyleSheet } from 'react-native';
+import {View, ActivityIndicator, Text, FlatList, Dimensions ,ScrollView, StyleSheet } from 'react-native';
 import Button from 'react-native-button';
 import { MessageBarManager } from 'react-native-message-bar';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {Actions} from 'react-native-router-flux';
 
 const {width} = Dimensions.get('window')
 
@@ -25,6 +26,13 @@ export default class Home extends Component {
                 {/* horizontal:实现水平滚动 */}
                 {/* numColumns:实现分栏布局 */}
                 <Icon color="red" name='chevron-left'/>
+                {/* <ActivityIndicator size='large' color="red"/> */}
+                <View style={{alignItems:'center',marginBottom:20}}>
+                    <Button 
+                        onPress={()=>{Actions.mylist()}}
+                        style={styles.btn}
+                    >跳转 Mylist</Button>
+                </View>
                 <FlatList 
                     ListHeaderComponent={
                         <Button 

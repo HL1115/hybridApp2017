@@ -10,6 +10,7 @@ import ShowMyName from './components/ShowMyName';
 import Login from './components/Login';
 import Home from './components/Home';
 import Message from './components/Message';
+import Mylist from './components/Mylist';
 
 // 图标安装完后，要link，link成功后卸载App，再重新 npm run android
 // 重装完以后，App停止运行的，卸载除了 react-native-router-flux之外的没用的包
@@ -40,7 +41,7 @@ const App = () => {
 								inactiveTintColor="blue"
 								tabBarStyle={{backgroundColor:'#ccc'}}
 							>
-								{/* 消息栏 */}
+								{/* 首页 */}
 								<Scene key='home'
 									title='首页'
 									icon={
@@ -49,9 +50,14 @@ const App = () => {
 											name="home"
 										/>
 									}
-									component={Home}
-									
 								>
+									<Scene key='home' component={Home}/>
+									<Scene 
+										hideTabBar 
+										hideDrawerButton
+										key='mylist' 
+										component={Mylist}
+									/>
 								</Scene>
 								{/* 消息栏 */}
 								<Scene key='msg'

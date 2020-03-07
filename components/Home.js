@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
-import { Animated, Easing, View, ActivityIndicator, Text, FlatList, Dimensions ,ScrollView, StyleSheet } from 'react-native';
+import { Animated, Easing, 
+    View, ActivityIndicator, Text, Image,
+    FlatList, Dimensions ,ScrollView, StyleSheet } from 'react-native';
 import Button from 'react-native-button';
 import { MessageBarManager } from 'react-native-message-bar';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Actions} from 'react-native-router-flux';
-
+import {WebView} from 'react-native-webview';
+import ImagePicker from 'react-native-image-picker';
 const {width} = Dimensions.get('window')
-
+const options = {
+    title: 'Select Avatar',
+    customButtons: [{ name: 'fb', title: 'Choose Photo from Facebook' }],
+    storageOptions: {
+      skipBackup: true,
+      path: 'images',
+    },
+};
 
 export default class Home extends Component {
     constructor(){
@@ -17,8 +27,26 @@ export default class Home extends Component {
         }
         this.state = {
             data,
-            width: new Animated.Value(20)
+            width: new Animated.Value(20),
+            imageUrl:''
         }
+    }
+    takephoto = ()=>{
+        ImagePicker.showImagePicker(options, (response) => {
+            if (response.didCancel) {
+              return;
+            } else if (response.error) {
+              console.log('Error:', response.error);
+            } else if (response.customButton) {
+              console.log('custom:', response.customButton);
+            } else {
+                
+              const source = { uri: response.uri };
+              this.setState({
+                imageUrl: source,
+              });
+            }
+          });
     }
     zoom = ()=>{
         Animated.timing(this.state.width,{
@@ -29,11 +57,16 @@ export default class Home extends Component {
     render() {
         console.log('home')
         return (
-            <View>
+            <View style={{flex:1}}>
                 {/* horizontal:实现水平滚动 */}
                 {/* numColumns:实现分栏布局 */}
-                <Icon color="red" name='chevron-left'/>
+                {/* <WebView style={{height:300}} source={{uri:'https://www.baidu.com'}}/> */}
+
                 {/* <ActivityIndicator size='large' color="red"/> */}
+                <Image 
+                    style={{width:300,height:300}} 
+                    source={this.state.imageUrl}
+                />
                 <View style={{alignItems:'center',marginBottom:20}}>
                     <Button 
                         onPress={()=>{Actions.mylist()}}
@@ -44,6 +77,10 @@ export default class Home extends Component {
                     onPress={()=>{this.zoom()}}
                     style={styles.btn}
                 >变大</Button>
+                <Button 
+                    onPress={()=>{this.takephoto()}}
+                    style={styles.btn}
+                >拍照</Button>
                 <Animated.View
                     style={{
                         width: this.state.width,

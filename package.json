@@ -18,13 +18,16 @@
     "react-native": "0.61.5",
     "react-native-button": "^2.4.0",
     "react-native-gesture-handler": "^1.6.0",
+    "react-native-image-crop-picker": "^0.28.0",
+    "react-native-image-picker": "^2.3.1",
     "react-native-message-bar": "^2.0.10",
     "react-native-reanimated": "^1.7.0",
     "react-native-router-flux": "4.0.6",
     "react-native-safe-area-context": "^0.7.3",
     "react-native-screens": "^2.1.0",
     "react-native-swiper": "^1.6.0-nightly.5",
-    "react-native-vector-icons": "^6.6.0"
+    "react-native-vector-icons": "^6.6.0",
+    "react-native-webview": "^8.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

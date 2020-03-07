@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Animated, View, Text, StyleSheet, Button } from 'react-native';
 import { Actions } from 'react-native-router-flux';
+import {WebView} from 'react-native-webview';
 
 export default class Mybox extends Component {
     constructor(){
@@ -35,6 +36,7 @@ export default class Mybox extends Component {
                             this.back
                         }
                     />
+                    <WebView style={{width:200,height:200}} source={{uri:'https://www.baidu.com'}}/>
                 </Animated.View>
             </View>
         )

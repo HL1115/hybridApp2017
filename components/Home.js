@@ -8,6 +8,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Actions} from 'react-native-router-flux';
 import {WebView} from 'react-native-webview';
 import ImagePicker from 'react-native-image-picker';
+import ImageCropPicker from 'react-native-image-crop-picker';
 const {width} = Dimensions.get('window')
 const options = {
     title: 'Select Avatar',
@@ -32,21 +33,28 @@ export default class Home extends Component {
         }
     }
     takephoto = ()=>{
-        ImagePicker.showImagePicker(options, (response) => {
-            if (response.didCancel) {
-              return;
-            } else if (response.error) {
-              console.log('Error:', response.error);
-            } else if (response.customButton) {
-              console.log('custom:', response.customButton);
-            } else {
-                
-              const source = { uri: response.uri };
-              this.setState({
-                imageUrl: source,
-              });
-            }
+        ImageCropPicker.openCamera({
+            width: 300,
+            height: 400,
+            cropping: true,
+          }).then(image => {
+            this.setState({imageUrl:{uri:image.path}})
           });
+        // ImagePicker.showImagePicker(options, (response) => {
+        //     if (response.didCancel) {
+        //       return;
+        //     } else if (response.error) {
+        //       console.log('Error:', response.error);
+        //     } else if (response.customButton) {
+        //       console.log('custom:', response.customButton);
+        //     } else {
+                
+        //       const source = { uri: response.uri };
+        //       this.setState({
+        //         imageUrl: source,
+        //       });
+        //     }
+        //   });
     }
     zoom = ()=>{
         Animated.timing(this.state.width,{

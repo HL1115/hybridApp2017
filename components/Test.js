@@ -58,8 +58,6 @@ export default class Test extends Component {
             tits: []
         }
     }
-    componentDidMount(){
-    }
     render() {
         return (
             <View style={{flex: 1,backgroundColor: '#fff'}}>

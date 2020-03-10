@@ -12,6 +12,7 @@ import Home from './components/Home';
 import Message from './components/Message';
 import Mylist from './components/Mylist';
 import LocalPage from './components/LocalPage';
+import Test from './components/Test';
 
 // 图标安装完后，要link，link成功后卸载App，再重新 npm run android
 // 重装完以后，App停止运行的，卸载除了 react-native-router-flux之外的没用的包
@@ -52,7 +53,7 @@ const App = () => {
 										/>
 									}
 								>
-									<Scene key='home' component={LocalPage}/>
+									<Scene key='home' hideNavBar={true} component={Test}/>
 									<Scene 
 										hideTabBar 
 										hideDrawerButton

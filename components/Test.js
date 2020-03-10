@@ -11,7 +11,8 @@ import {
     TextInput,
     TouchableOpacity,
     ScrollView,
-    StatusBar
+    StatusBar,
+    BackHandler
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const {width,scale} = Dimensions.get('window');
@@ -57,16 +58,19 @@ export default class Test extends Component {
             tits: []
         }
     }
+    componentDidMount(){
+    }
     render() {
         return (
             <View style={{flex: 1,backgroundColor: '#fff'}}>
                 <View style={styles.header}>
                     <View style={styles.search}>
                         <TextInput 
-                            placeholder="请输入商品名称"
+                            placeholder="请输入名称"
                             style={{
                                 width: 490*s,height: 50*s,
-                                backgroundColor: 'red',
+                                padding: 0,
+                                paddingLeft: 10
                             }}
                         />
                         <Icon name='search' />
@@ -95,7 +99,18 @@ export default class Test extends Component {
                     numColumns={2}
                     renderItem={({item})=>(
                         <View style={styles.good}>
-                            <Image source={item.img}/>
+                            <Image 
+                                resizeMode="contain"
+                                source={item.img}
+                                style={{height:180*s,marginTop: 60*s}}
+                            />
+                            <Text
+                                style={{marginTop: 20}}
+                            
+                            >{item.title}</Text>
+                            <Text 
+                                style={{width:'100%',color: 'red'}}
+                            >{item.price}</Text>
                         </View>
                     )}
                 />
@@ -125,7 +140,14 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     good:{
-
+        width: 290*s,
+        backgroundColor: '#fff',
+        marginLeft: 20*s,
+        marginTop: 20*s,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 20,
+        alignItems: 'center'
     }
 })
 // npm run android 或者 react-native run-android,在模拟器或者真机上装的

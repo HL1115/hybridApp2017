@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
-import {StyleSheet,View,Text, Image } from 'react-native';
-import {Router, Overlay, Scene, Tabs, Drawer, Lightbox, Modal} from 'react-native-router-flux';
+import {StyleSheet,View,Text, Image, BackHandler,ToastAndroid } from 'react-native';
+import {Router, Overlay, Scene, Tabs, Drawer, Lightbox, Modal, Actions} from 'react-native-router-flux';
 import Doc from './components/Doc';
 import Msg from './components/Msg';
 import MsgDetail from './components/MsgDetail';
@@ -24,8 +24,25 @@ const styles = StyleSheet.create({
 });
 const App = () => {
 	// 实现 Tabs
+	let now = 0;
 	return (
-		<Router>
+		<Router
+			backAndroidHandler={()=>{
+				if(Actions.currentScene != 'home'){
+					Actions.pop();
+					return true;
+				}else{
+					if(new Date().getTime()-now<2000){
+						BackHandler.exitApp();
+					}else{
+						ToastAndroid.show('确定要退出吗',100);
+						now = new Date().getTime();
+						return true;
+					}
+				}
+				
+			}}
+		>
 			<Overlay>
 			<Modal key="modal" hideNavBar>
 				<Lightbox key="lightbox">
@@ -86,8 +103,8 @@ const App = () => {
 									icon={({focused})=>
 										<Icon 
 											color={focused?'red':'blue'} 
-											name='file'/
-									>}
+											name='file'/>
+										}
 									title="文档"
 									component={Doc}
 								/>

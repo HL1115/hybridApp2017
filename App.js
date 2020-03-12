@@ -13,11 +13,14 @@ import Message from './components/Message';
 import Mylist from './components/Mylist';
 import LocalPage from './components/LocalPage';
 import Test from './components/Test';
+import MyTs from './components/MyTs';
 
 // 图标安装完后，要link，link成功后卸载App，再重新 npm run android
 // 重装完以后，App停止运行的，卸载除了 react-native-router-flux之外的没用的包
 // yarn remove 包名   删除包
 // 每新装完一个包，服务就会自动停止，
+console.disableYellowBox = true;
+
 
 const styles = StyleSheet.create({
 	
@@ -70,7 +73,7 @@ const App = () => {
 										/>
 									}
 								>
-									<Scene key='home' hideNavBar={true} component={Test}/>
+									<Scene key='home' hideNavBar={true} component={MyTs}/>
 									<Scene 
 										hideTabBar 
 										hideDrawerButton

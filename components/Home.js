@@ -9,6 +9,7 @@ import {Actions} from 'react-native-router-flux';
 import {WebView} from 'react-native-webview';
 import ImagePicker from 'react-native-image-picker';
 import ImageCropPicker from 'react-native-image-crop-picker';
+import MyTs from './MyTs';
 const {width} = Dimensions.get('window')
 const options = {
     title: 'Select Avatar',
@@ -66,6 +67,7 @@ export default class Home extends Component {
         console.log('home')
         return (
             <View style={{flex:1}}>
+                
                 {/* horizontal:实现水平滚动 */}
                 {/* numColumns:实现分栏布局 */}
                 {/* <WebView style={{height:300}} source={{uri:'https://www.baidu.com'}}/> */}

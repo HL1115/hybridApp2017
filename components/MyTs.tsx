@@ -51,7 +51,38 @@ let hybird: Course = {
 //     return true;
 // }
 
-export default class MyTs extends Component {
+interface Person{
+    name: string,
+    age: number,
+}
+
+interface User extends Person{
+    pwd: string
+}
+// implements 实现
+class User1 implements User{
+    name = 'zhangsan';
+    age = 20;
+    pwd = '1234566'
+}
+console.log(new User1())
+
+// 继承（extends）
+// 类实现接口
+// 接口继承接口
+// 接口继承类
+
+interface User2 extends User1{
+    work:string
+}
+
+interface Props{
+    name:string
+}
+
+
+
+export default class MyTs extends Component<Props> {
     render() {
         return (
             <View>

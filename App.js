@@ -23,7 +23,7 @@ console.disableYellowBox = true;
 
 const App = () =>{
 	return <View>
-		<Demo01 />
+		<Demo01 name={100222}/>
 	</View>
 }
 // const App = () => {

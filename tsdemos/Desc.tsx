@@ -71,6 +71,70 @@ function setStatusBar(color:string){
         }
     }
 }
+// 方法装饰器
+
+// function enumerable(value: boolean) {
+//     return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+//         // target是类原型对象
+//         target.name = 'liu';//在原型上直接加一个属性
+//         console.log(propertyKey)
+//         console.log(descriptor)
+//         descriptor.enumerable = value;
+//     };
+// }
+// class Greeter {
+//     greeting: string;
+//     constructor(message: string) {
+//         this.greeting = message;
+//     }
+//     @enumerable(false)
+//     greet() {
+//         return "Hello, " + this.greeting;
+//     }
+// }
+// console.log(new Greeter('world').name)
+
+function enumerable(value: boolean) {
+    console.log('enum call')
+    return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+        console.log('enum dec call')
+        descriptor.enumerable = value;
+    };
+}
+
+function log(target:any,methodName:string,des:PropertyDescriptor){
+    console.log('log call');
+    var oldVal = des.value;
+    des.value = function(){
+        console.log(methodName+'被调用');
+        return oldVal.apply(this,[...arguments]);
+    }
+}
+class Greeter {
+    greeting: string;
+    constructor(message: string) {
+        this.greeting = message;
+    }
+    @enumerable(true)
+    @log
+    greet(msg:string) {
+        return "Hello, " + this.greeting + msg;
+    }
+}
+let msg = new Greeter('world').greet('greet 参数')
+console.log( msg )
+
+// 属性装饰器，以下功能没有实现
+// function DefaultValue(value: string) {
+//     return function (target: any, propertyName: string) {
+//         target[propertyName] = value;
+//     }
+// }
+// class Hello {
+//     @DefaultValue("Hello") 
+//     greeting: any;
+// }
+// console.log('属性装饰器'+new Hello().greeting);
 
 @setStatusBar('red')
 export default class Desc extends Component {

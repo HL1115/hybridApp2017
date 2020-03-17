@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
 import ListItem from './ListItem';
+import Desc from './Desc';
 
 // 类型断言：可以确定地指定一个值的类型
 // 形式：
@@ -110,6 +111,7 @@ export default class Demo01 extends Component<Props,State> {
             <View>
                 <Text> {this.props.name} </Text>
                 <ListItem name={'122'}/>
+                <Desc />
             </View>
         )
     }

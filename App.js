@@ -20,6 +20,7 @@ const App = () => {
 	let [isLogin,setLogin] = useState(false);
 	let now = 0;
 	useEffect(()=>{
+		AsyncStorage.clear()
 		AsyncStorage.getItem('user')
 		.then(res=>{
 			let user = JSON.parse(res)

@@ -8,7 +8,8 @@ export default class Login extends Component {
         super();
         this.state = {
             username:'',
-            pwd:''
+            pwd:'',
+            isloading:false
         }
     }
     userhandle = (text)=>{
@@ -20,13 +21,18 @@ export default class Login extends Component {
     login = ()=>{
         // myFetch.get('/topics',{limit:4,user:'sss'})
         //     .then(res=>console.log(res))
-
+        this.setState({isloading:true})
         myFetch.post('/login',{
             username:this.state.username,
             pwd:this.state.pwd}
         ).then(res=>{
+            // 根据返回状态进行判断，正确时跳转首页
+            // if(res){
+
+            // }
             AsyncStorage.setItem('user',JSON.stringify(res.data))
                 .then(()=>{
+                    this.setState({isloading:false})
                     Actions.homePage();
                 })
         })
@@ -81,6 +87,11 @@ export default class Login extends Component {
                 <Text>登录</Text>
             </TouchableOpacity>
         </View>
+        {
+            this.state.isloading
+            ?<View><Text>正在登录</Text></View>
+            :null
+        }
       </View>
     );
   }

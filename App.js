@@ -1,25 +1,13 @@
 import React,{useState,useEffect} from 'react';
 import {StyleSheet,View,Text, Image, BackHandler,ToastAndroid } from 'react-native';
 import {Router, Overlay, Scene, Tabs, Drawer, Lightbox, Modal, Actions} from 'react-native-router-flux';
-import Doc from './components/Doc';
-import Msg from './components/Msg';
-import MsgDetail from './components/MsgDetail';
-import { Grid, Icon } from '@ant-design/react-native';
-import Mybox from './components/Mybox';
-import ShowMyName from './components/ShowMyName';
-import Login from './components/Login';
-import Home from './components/Home';
-import Message from './components/Message';
-import Mylist from './components/Mylist';
-import SplashScreen from 'react-native-splash-screen'
-// App logo : 将myApp\android\app\src\main\res下的文件夹下图片换成自己的 
-// 启动画面 ：react-native-splash-screen
-// 如果第一次安装，一般来说都有一个引导页（普通轮播图），注意本地存储记录下状态
-// 看功能，是否需要先登录，如果需要先登录，登录完记录状态（用户信息）
-// 再次进入的时候，也要从本地判断是否登录过
+import { Icon } from '@ant-design/react-native';
+import SplashScreen from 'react-native-splash-screen';
+import Home from './src/home/Home';
+import Goods from './src/goods/Goods';
+import User from './src/userinfor/Userinfor';
+import Userinfor from './src/userinfor/Userinfor';
 
-// react native中本地存储是异步的
-// 
 
 console.disableYellowBox = true;
 
@@ -70,7 +58,7 @@ const App = () => {
 								tabBarStyle={{backgroundColor:'#ccc'}}
 							>
 								{/* 首页 */}
-								<Scene key='home'
+								<Scene key='homePage'
 									title='首页'
 									icon={
 										({focused})=><Icon 
@@ -80,16 +68,10 @@ const App = () => {
 									}
 								>
 									<Scene key='home' hideNavBar={true} component={Home}/>
-									<Scene 
-										hideTabBar 
-										hideDrawerButton
-										key='mylist' 
-										component={Mylist}
-									/>
 								</Scene>
-								{/* 消息栏 */}
-								<Scene key='msg'
-									title='消息'
+								{/* 商品分类 */}
+								<Scene key='goodsPage'
+									title='商品分类'
 									icon={
 										({focused})=><Icon 
 											color={focused?'red':'blue'} 
@@ -98,35 +80,30 @@ const App = () => {
 									}
 									
 								>
-									<Scene key="ms" component={Msg}/>
-									<Scene 
-										key="msgdetail" 
-										hideTabBar    
-										component={MsgDetail}
-									/>
+									<Scene key="goods" component={Goods}/>
 								</Scene>
-								{/* 文档栏 */}
+								{/* 用户中心 */}
 								<Scene 
-									key='doc'
+									key='userPage'
 									hideDrawerButton
 									icon={({focused})=>
 										<Icon 
 											color={focused?'red':'blue'} 
 											name='file'/>
 										}
-									title="文档"
-									component={Doc}
+									title="用户中心"
+									component={Userinfor}
 								/>
 								
 							</Tabs>
 						</Scene>
 					</Drawer>
-					<Scene key='light' component={Mybox}/>
+					{/* <Scene key='light' component={Mybox}/> */}
 				</Lightbox>
-				<Scene key="login" component={ShowMyName}/>
-				<Scene key="login1" component={Login}/>
+				{/* <Scene key="login" component={ShowMyName}/> */}
+				{/* <Scene key="login1" component={Login}/> */}
 			</Modal>
-			<Scene component={Message}/>
+			{/* <Scene component={Message}/> */}
 			</Overlay>
 		</Router>
 	);

@@ -1,5 +1,7 @@
 import React,{useState,useEffect} from 'react';
-import {StyleSheet,View,Text, Image, BackHandler,ToastAndroid } from 'react-native';
+import {StyleSheet,View,Text, Image, 
+	BackHandler,ToastAndroid,AsyncStorage
+} from 'react-native';
 import {Router, Overlay, Scene, Tabs, Drawer, Lightbox, Modal, Actions} from 'react-native-router-flux';
 import { Icon } from '@ant-design/react-native';
 import SplashScreen from 'react-native-splash-screen';
@@ -15,14 +17,23 @@ console.disableYellowBox = true;
 const rootUrl = 'https://www.fastmock.site/mock/65721c49c01f167ea082d0dc81fb0c41/api';
 
 const App = () => {
-	// 实现 Tabs
+	let [isLogin,setLogin] = useState(false);
 	let now = 0;
 	useEffect(()=>{
-		SplashScreen.hide();
-		fetch(rootUrl+'/topics?limit=5')
-			.then(res=>res.json())
-			.then(res=>console.log(JSON.stringify(res)))
+		AsyncStorage.getItem('user')
+		.then(res=>{
+			let user = JSON.parse(res)
+			console.log(user)
+			if(!user){
+				SplashScreen.hide();
+			}
+			if(user&&user.token){
+				setLogin(true);
+				SplashScreen.hide();
+			}
+		})
 	},[])
+
 	return (
 		<Router
 			backAndroidHandler={()=>{
@@ -104,7 +115,7 @@ const App = () => {
 					{/* <Scene key='light' component={Mybox}/> */}
 				</Lightbox>
 
-				<Scene initial={true} key="login" component={Login} />
+				<Scene initial={!isLogin} key="login" component={Login} />
 
 				{/* <Scene key="login" component={ShowMyName}/> */}
 				{/* <Scene key="login1" component={Login}/> */}

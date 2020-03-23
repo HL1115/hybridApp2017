@@ -5,6 +5,7 @@ import { Icon } from '@ant-design/react-native';
 import SplashScreen from 'react-native-splash-screen';
 import Home from './src/home/Home';
 import Goods from './src/goods/Goods';
+import Login from './src/common/Login'
 import User from './src/userinfor/Userinfor';
 import Userinfor from './src/userinfor/Userinfor';
 
@@ -67,7 +68,9 @@ const App = () => {
 										/>
 									}
 								>
-									<Scene key='home' hideNavBar={true} component={Home}/>
+									<Scene key='home' 
+										component={Home}
+									/>
 								</Scene>
 								{/* 商品分类 */}
 								<Scene key='goodsPage'
@@ -100,6 +103,9 @@ const App = () => {
 					</Drawer>
 					{/* <Scene key='light' component={Mybox}/> */}
 				</Lightbox>
+
+				<Scene initial={true} key="login" component={Login} />
+
 				{/* <Scene key="login" component={ShowMyName}/> */}
 				{/* <Scene key="login1" component={Login}/> */}
 			</Modal>

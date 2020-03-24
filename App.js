@@ -16,8 +16,10 @@ console.disableYellowBox = true;
 
 const App = () => {
 	let [isLogin,setLogin] = useState(false);
+	let [isInstall,setInstall] = useState(true);
 	let now = 0;
 	useEffect(()=>{
+
 		AsyncStorage.getItem('user')
 		.then(res=>{
 			let user = JSON.parse(res)
@@ -31,9 +33,14 @@ const App = () => {
 			}
 		})
 	},[])
-	return <View style={{flex:1}}>
-		<SwiperPage />
-	</View>
+	let afterInstall = ()=>{
+		setInstall(false)
+	}
+	if(isInstall){
+		return <View style={{flex:1}}>
+			<SwiperPage afterInstall={afterInstall}/>
+		</View>
+	}
 
 	return (
 		<Router

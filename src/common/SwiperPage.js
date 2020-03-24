@@ -4,10 +4,10 @@ import Button from 'react-native-button';
 import Swiper from 'react-native-swiper';
 
 export default class SwiperPage extends Component {
-  start = () => {
-      console.log('start')
-    AsyncStorage.setItem('isInstall',true);
-    this.props.afterInstall();
+  start =  () => {
+        AsyncStorage.setItem('isInstall','true',()=>{
+            this.props.afterInstall();
+        });
   };
   render() {
     return (

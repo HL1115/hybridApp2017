@@ -18,8 +18,14 @@ const App = () => {
 	let [isLogin,setLogin] = useState(false);
 	let [isInstall,setInstall] = useState(true);
 	let now = 0;
-	useEffect(()=>{
-
+	let init = ()=>{
+		AsyncStorage.getItem('isInstall')
+		.then(res=>{
+			console.log('isinstall',res)
+			if(res){
+				setInstall(false);
+			}
+		})
 		AsyncStorage.getItem('user')
 		.then(res=>{
 			let user = JSON.parse(res)
@@ -32,8 +38,12 @@ const App = () => {
 				SplashScreen.hide();
 			}
 		})
+	}
+	useEffect(()=>{
+		init();
 	},[])
 	let afterInstall = ()=>{
+		console.log('after install')
 		setInstall(false)
 	}
 	if(isInstall){

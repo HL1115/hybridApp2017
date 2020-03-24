@@ -89,7 +89,7 @@ export default class Login extends Component {
         </View>
         {
             this.state.isloading
-            ?<View><Text>正在登录</Text></View>
+            ?<View><Text>正在登录。。。</Text></View>
             :null
         }
       </View>

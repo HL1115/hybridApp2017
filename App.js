@@ -8,19 +8,16 @@ import SplashScreen from 'react-native-splash-screen';
 import Home from './src/home/Home';
 import Goods from './src/goods/Goods';
 import Login from './src/common/Login'
-import User from './src/userinfor/Userinfor';
 import Userinfor from './src/userinfor/Userinfor';
+import SwiperPage from './src/common/SwiperPage';
 
 
 console.disableYellowBox = true;
-
-const rootUrl = 'https://www.fastmock.site/mock/65721c49c01f167ea082d0dc81fb0c41/api';
 
 const App = () => {
 	let [isLogin,setLogin] = useState(false);
 	let now = 0;
 	useEffect(()=>{
-		AsyncStorage.clear()
 		AsyncStorage.getItem('user')
 		.then(res=>{
 			let user = JSON.parse(res)
@@ -34,6 +31,9 @@ const App = () => {
 			}
 		})
 	},[])
+	return <View style={{flex:1}}>
+		<SwiperPage />
+	</View>
 
 	return (
 		<Router

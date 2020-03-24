@@ -7,7 +7,6 @@ let myFetch = {
         if(queryParams){
             url += "?"+queryString.stringify(queryParams);
         }
-        console.log(url)
         return fetch(url)
                 .then(res=>res.json())
     },
